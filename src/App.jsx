@@ -6,7 +6,7 @@ import DataProvider from "./context/context";
 
 
 function App() {
-const {booking, isLoading, error, } = useContext(BookingDatas);
+const {bookings, isLoading, error, } = useContext(BookingDatas);
 
 if (isLoading) return <div>Data Loading...</div>
 if (error) return <div>Error: {error}</div>

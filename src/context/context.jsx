@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 export const BookingDatas = React.createContext();
 
 export default function DataProvider({ children }) {
-  const [booking, setBooking] = useState([]);
+  const [bookings, setBookings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -18,7 +18,7 @@ export default function DataProvider({ children }) {
         }
 
         const data = await response.json();
-        setBooking(data);
+        setBookings(data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -29,7 +29,7 @@ export default function DataProvider({ children }) {
   }, []);
 
   return (
-    <BookingDatas.Provider value={{ booking, setBooking, isLoading, error }}>
+    <BookingDatas.Provider value={{ bookings, setBookings, isLoading, error }}>
       {children}
     </BookingDatas.Provider>
   );

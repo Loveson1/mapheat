@@ -19,3 +19,6 @@ export  function getOccupancy(bookings, date) {
 }
 
 
+export function occupancyHeatmap(bookings, date) {
+    
+}

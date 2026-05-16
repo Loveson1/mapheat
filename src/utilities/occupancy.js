@@ -1,16 +1,21 @@
-export default function occupancy(bookings, date) {
+import { normalize } from "./calendar";
+export  function getOccupancy(bookings, date) {
   let occupiedRooms = 0;
+
+  const target = normalize(date)
 
   bookings.forEach((booking) => {
     if (booking.status === "cancelled") return;
 
-    const checkin = new Date(booking.checkIn);
-    const checkout = new Date(booking.checkOut);
+    const checkin = normalize(new Date(booking.checkIn));
+    const checkout = normalize(new Date(booking.checkOut));
 
-    if (checkin >= date && checkout > date) {
-      occupiedRoom++;
+    if (target >= checkin && checkout > target) {
+      occupiedRooms++;
     }
   });
 
   return occupiedRooms;
 }
+
+

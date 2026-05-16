@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { getCalendarDays } from "../utilities/calendar";
+import { BookingDatas } from "../context/context";
+import { getOccupancy } from "../utilities/occupancy";
 
 function CalendarGrid() {
   const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
@@ -10,6 +12,9 @@ function CalendarGrid() {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
   const monthName = currentDate.toLocaleString("default", { month: "long" });
+
+  // context data for bookings
+  const { bookings } = useContext(BookingDatas);
 
   const calendarDays = getCalendarDays(year, month);
 
@@ -26,11 +31,16 @@ function CalendarGrid() {
         ))}
       </div>
       <div className="grid">
-        {calendarDays.map((day, index) => (
-          <div key={index} className="line">
-            <p>{day.dayNumber}</p>
-          </div>
-        ))}
+        {calendarDays.map((day, index) => {
+          const occupiedRooms = getOccupancy(bookings, day.date);
+
+          return (
+            <div key={index} className="line">
+              <p>{day.dayNumber}</p>
+              <small>{occupiedRooms}/10 occupied</small>
+            </div>
+          );
+        })}
       </div>
     </>
   );

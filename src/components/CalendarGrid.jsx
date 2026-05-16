@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getCalendarDays } from "./utilities/calendar";
+import { getCalendarDays } from "../utilities/calendar";
 
 function CalendarGrid() {
   const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
@@ -31,7 +31,7 @@ function CalendarGrid() {
 <div className="grid">
      {calendarDays.map((day, index) => (
         <div key={index} className="line" >
-          <p>{day}</p>
+          <p>{day.dayNumber}</p>
         </div>
      ))}</div>
     </>

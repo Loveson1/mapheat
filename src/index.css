@@ -72,14 +72,11 @@ button:hover {
   gap: 5px;
 }
 
-.filler{
-  background-color: gray;
-  opacity: 50%;
-}
+
 
 .line {
   border: gray 1px solid;
-  padding-inline: 20px;
+  padding-inline: 10px;
 }
 
 p{

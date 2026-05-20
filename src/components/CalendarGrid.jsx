@@ -33,15 +33,15 @@ function CalendarGrid() {
   };
 
   return (
-    <>
-      <h2 className="header">
-        {monthName} {year}
-      </h2>
-      <div>
+    <> <div style={{ position: "fixed", top: "20px"}}>
         <button onClick={handlePrevMonth}>prev</button>
         <button onClick={handleCurrentMonth}>today</button>
         <button onClick={handleNextMonth}>next</button>
       </div>
+      <h2 className="header">
+        {monthName} {year}
+      </h2>
+     
       <div className="grid">
         {weekDays.map((days) => (
           <div key={days}>

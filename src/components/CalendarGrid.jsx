@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { getCalendarDays } from "../utilities/calendar";
 import { BookingDatas } from "../context/context";
-import { getOccupancy } from "../utilities/occupancy";
+import { getOccupancy, occupancyHeatmap } from "../utilities/occupancy";
 
 function CalendarGrid() {
   const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
@@ -18,11 +18,30 @@ function CalendarGrid() {
 
   const calendarDays = getCalendarDays(year, month);
 
+  // function to handle month change
+  const nextMonth = new Date(year, month + 1, 1);
+  const prevMonth = new Date(year, month - 1, 1);
+
+  const handleNextMonth = () => {
+    setCurrentDate(nextMonth);
+  };
+  const handleCurrentMonth = () => {
+    setCurrentDate(new Date());
+  };
+  const handlePrevMonth = () => {
+    setCurrentDate(prevMonth);
+  };
+
   return (
     <>
       <h2 className="header">
         {monthName} {year}
       </h2>
+      <div>
+        <button onClick={handlePrevMonth}>prev</button>
+        <button onClick={handleCurrentMonth}>today</button>
+        <button onClick={handleNextMonth}>next</button>
+      </div>
       <div className="grid">
         {weekDays.map((days) => (
           <div key={days}>
@@ -33,11 +52,12 @@ function CalendarGrid() {
       <div className="grid">
         {calendarDays.map((day, index) => {
           const occupiedRooms = getOccupancy(bookings, day.date);
+          const backgroundColor = day.isCurrentMonth ? occupancyHeatmap(occupiedRooms): "#ccc"
 
           return (
-            <div key={index} className="line">
-              <p>{day.dayNumber}</p>
-              <small>{occupiedRooms}/10 occupied</small>
+            <div key={index} className="line" style={{ backgroundColor }}>
+              <p className="bla"> {day.dayNumber}</p>
+              <small className="bla"> {occupiedRooms}/10 occupied</small>
             </div>
           );
         })}

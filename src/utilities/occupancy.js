@@ -21,13 +21,13 @@ export  function getOccupancy(bookings, date) {
 
 export function occupancyHeatmap(occupancy) {
     if (occupancy >= 8) {
-        return "green";
+        return "#00d727";
     } else if (occupancy >= 5) {
-        return "yellow";
+        return "#ffff00";
     } else if (occupancy >= 2) {
-        return "orange";
+        return "#FFA500";
     }else if (occupancy >= 0) {
-        return "red";
-    } return "darkgreen"
+        return "#FF0000";
+    } return "#016b01"
 
 }

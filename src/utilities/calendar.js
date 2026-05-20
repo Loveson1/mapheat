@@ -27,7 +27,7 @@ export function getCalendarDays(year, month) {
 
   while (calendarDays.length % 7 != 0) {
     calendarDays.push({
-      date: new Date(year, month, nextMonthDay),
+      date: new Date(year, month + 1, nextMonthDay),
       dayNumber: nextMonthDay,
       isCurrentMonth: false,
     });

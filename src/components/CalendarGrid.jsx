@@ -13,8 +13,9 @@ function CalendarGrid() {
   const month = currentDate.getMonth();
   const monthName = currentDate.toLocaleString("default", { month: "long" });
 
-  // context data for bookings
+  // context data for bookings and selection
   const { bookings } = useContext(BookingDatas);
+  const {setSelected} = useContext(BookingDatas)
 
   const calendarDays = getCalendarDays(year, month);
 
@@ -31,6 +32,12 @@ function CalendarGrid() {
   const handlePrevMonth = () => {
     setCurrentDate(prevMonth);
   };
+
+  //functions for handling selection
+  const handleMouseDown = (date) => {
+    setSelected({ start: date, end: null, isDragged: false });
+  }
+
 
   return (
     <> <div style={{ position: "fixed", top: "20px"}}>

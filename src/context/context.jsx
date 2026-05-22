@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 
-
 export const BookingDatas = React.createContext();
 
 export default function DataProvider({ children }) {
   const [bookings, setBookings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selected, setSelected] = useState({
+    start: null,
+    end: null,
+    isDragged: false,
+  });
 
   useEffect(() => {
     async function getDatas() {
@@ -29,7 +33,7 @@ export default function DataProvider({ children }) {
   }, []);
 
   return (
-    <BookingDatas.Provider value={{ bookings, setBookings, isLoading, error }}>
+    <BookingDatas.Provider value={{ bookings, isLoading, error, selected, setSelected }}>
       {children}
     </BookingDatas.Provider>
   );

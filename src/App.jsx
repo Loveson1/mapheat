@@ -3,6 +3,7 @@ import CalendarGrid from "./components/CalendarGrid";
 import { useContext } from "react";
 import { BookingDatas } from "./context/context";
 import DataProvider from "./context/context";
+import BookingPanel from "./components/Booking";
 
 
 function App() {
@@ -13,8 +14,15 @@ if (error) return <div>Error: {error}</div>
 
 
   return (
-    <DataProvider>
-      <CalendarGrid />
+    <DataProvider >
+      <div  className="flex">
+        <div>
+<CalendarGrid />
+        </div>
+      
+      <div style={{ width: "50%"}}><BookingPanel/></div> 
+      
+      </div>
     </DataProvider>
   );
 }
